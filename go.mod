@@ -1,7 +1,7 @@
-module another_bedrockproxy
+module github.com/HollowKnightttt/Another-BedrockProxy
 
 go 1.22
 
 require (
-	github.com/Sandertv/gophertunnel/ v1.38.0
+	github.com/sandertv/gophertunnel v1.38.0
 )
