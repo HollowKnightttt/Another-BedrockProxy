@@ -8,8 +8,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/Sandertv/gophertunnel/tree/master/minecraft"
-	"github.com/Sandertv/gophertunnel/tree/master/minecraft/protocol/packet"
+	"github.com/sandertv/gophertunnel/minecraft"
+	"github.com/sandertv/gophertunnel/minecraft/protocol/packet"
 )
 
 type ProxyClient struct {
