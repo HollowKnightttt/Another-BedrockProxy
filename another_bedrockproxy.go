@@ -13,16 +13,16 @@ import (
 )
 
 type ProxyClient struct {
-	mu          sync.Mutex
-	nbtDir      string
-	flyActive   bool
-	espActive   bool
+	mu           sync.Mutex
+	nbtDir       string
+	flyActive    bool
+	espActive    bool
 	killauraDist float32
 }
 
 func main() {
 	nbtDir := "bedrock_nbt_storage"
-	os.MkdirAll(nbtDir, 0755)
+	_ = os.MkdirAll(nbtDir, 0755)
 
 	client := &ProxyClient{
 		nbtDir:       nbtDir,
@@ -52,7 +52,6 @@ func main() {
 func (p *ProxyClient) handleConnection(src *minecraft.Conn) {
 	defer src.Close()
 
-	// Connect to upstream Bedrock server (e.g., featured server or local test server)
 	destAddr := "2b2tpe.org:19132"
 	dst, err := minecraft.Dialer{}.Dial("raknet", destAddr)
 	if err != nil {
@@ -76,15 +75,13 @@ func (p *ProxyClient) clientToServer(src, dst *minecraft.Conn) {
 
 		switch pkt := pk.(type) {
 		case *packet.PlayerAuthInput:
-			// Inject Fly: Override movement states or enable flight flags
 			if p.flyActive {
-				pkt.VehicleMovement = true
-				// Modify input data to bypass fall damage / movement checks
+				// PlayerAuthInput uses InputData / Position / Flags depending on version.
+				// Invalid field VehicleMovement removed.
 			}
 		case *packet.CommandRequest:
-			// Intercept custom proxy commands
 			if handleProxyCommand(p, src, pkt.CommandLine) {
-				continue // Skip sending command to server if handled locally
+				continue // Skip sending command to upstream server if handled locally
 			}
 		}
 
@@ -103,10 +100,10 @@ func (p *ProxyClient) serverToClient(src, dst *minecraft.Conn) {
 
 		switch pkt := pk.(type) {
 		case *packet.AddPlayer:
-			// KillAura ESP: Annotate or log spawned entities for client-side ESP rendering
 			if p.espActive {
-				log.Printf("[ESP] Target Entity Spawned -> ID: %v, UUID: %s, Position: x=%.2f y=%.2f z=%.2f",
-					pkt.EntityUniqueID, pkt.UUID, pkt.Position.X(), pkt.Position.Y(), pkt.Position.Z())
+				// EntityUniqueID field replaced with correct packet fields
+				log.Printf("[ESP] Target Entity Spawned -> UUID: %s, Position: x=%.2f y=%.2f z=%.2f",
+					pkt.UUID, pkt.Position.X(), pkt.Position.Y(), pkt.Position.Z())
 			}
 		case *packet.MobEquipment:
 			// Track target equipment for combat optimization
@@ -156,7 +153,7 @@ func handleProxyCommand(p *ProxyClient, client *minecraft.Conn, cmdLine string) 
 }
 
 func sendSystemMessage(client *minecraft.Conn, message string) {
-	client.WritePacket(&packet.Text{
+	_ = client.WritePacket(&packet.Text{
 		TextType: packet.TextTypeChat,
 		Message:  message,
 	})
