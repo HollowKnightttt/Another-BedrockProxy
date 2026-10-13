@@ -1,3 +1,0 @@
-go mod download github.com/sandertv/gophertunnel
-go get github.com/sandertv/gophertunnel
-go mod tidy
