@@ -1,5 +1,5 @@
 # Another BedrockProxy
-A proxy hack utilities for Minecraft: Bedrock Edition
+A proxy hack utilities for Minecraft: Bedrock Edition Written In Go
 
 ## Run Proxy
 - Frok This Repository Then Edit the ```destAddr := "server_ip:port"```
