@@ -14,6 +14,8 @@ A proxy hack utilities for Minecraft: Bedrock Edition Written In Go
 
 # About Another BedrockProxy
 This Is Newest Version Of BedrockProxy By AkmalFairuz The Original Was Discontinued And Only Support 1.17 An Older Version Of Minecraft Pocket Edition (Now Rename To Bedrock Edition) 
+- Created By RandomMizerrr
+- Made In Indonesia On October-12-2026
 
 # Tested Server
 - 10b10t.uk.to (10B10TPE) 
