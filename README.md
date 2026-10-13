@@ -11,3 +11,6 @@ go run another-bedrockproxy.go
 - esp
 - fly
 - killaura
+
+# About Another BedrockProxy
+This Is Newest Version Of BedrockProxy By AkmalFairuz The Original Was Discontinued And Only Support 1.17 An Older Version Of Minecraft Pocket Edition (Now Rename To Bedrock Edition) 
