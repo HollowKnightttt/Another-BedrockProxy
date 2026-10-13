@@ -2,6 +2,8 @@
 A proxy hack utilities for Minecraft: Bedrock Edition
 
 ## Run Proxy
+From This Repository Then Edit the ```destAddr := "server_ip:port"```
+Running The Proxy
 ```
 go run another-bedrockproxy.go
 ```
