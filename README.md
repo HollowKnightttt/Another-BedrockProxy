@@ -4,7 +4,7 @@ A proxy hack utilities for Minecraft: Bedrock Edition Written In Go
 ## Run Proxy
 - Frok This Repository Then Edit the ```destAddr := "server_ip:port"```
 - Running The Proxy
-- ```go run another-bedrockproxy.go```
+- ```go run another_bedrockproxy.go```
 
 ## Hack Utilities
 - nbt loader
