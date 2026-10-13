@@ -1,4 +1,4 @@
-module bedrock_proxy
+module another_bedrockproxy
 
 go 1.22
 
